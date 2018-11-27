@@ -127,6 +127,17 @@ public class Employe {
         return LocalDate.now().getYear() - dateEmbauche.getYear();
     }
 
+    /**
+     * Méthode pour récupérer la constante NB_CONGES_BASE
+     * @return NB_CONGES_BASE
+     */
+    public Integer getNbConges(){
+        return Entreprise.NB_CONGES_BASE;
+    }
 
+    @Override
+    public String toString() {
 
+        return super.toString();
+    }
 }
