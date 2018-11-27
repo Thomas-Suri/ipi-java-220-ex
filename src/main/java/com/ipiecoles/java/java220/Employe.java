@@ -71,8 +71,12 @@ public class Employe {
     /**
      * Setter de dateEmbauche
      * @param dateE
+     * @throws Exception
      */
-    public void setDateEmbauche(LocalDate dateE){
+    public void setDateEmbauche(LocalDate dateE) throws Exception{
+        if(dateE != null && dateE.isAfter(LocalDate.now())){
+            throw new Exception("La date d'embauche ne peut être postérieure à la date courante");
+        }
         this.dateEmbauche = dateE;
     }
 
@@ -91,4 +95,38 @@ public class Employe {
     public void setSalaire(Double sal){
         this.salaire = sal;
     }
+
+    /**
+     * Constructeur par défaut
+     */
+    public Employe(){
+
+    }
+
+    /**
+     * Constructeur avec paramètres
+     * @param eNom
+     * @param ePremnom
+     * @param eMatricule
+     * @param eDateEmbauche
+     * @param eSalaire
+     */
+    public Employe(String eNom, String ePremnom, String eMatricule, LocalDate eDateEmbauche, Double eSalaire){
+        this.nom = eNom;
+        this.prenom = ePremnom;
+        this.matricule = eMatricule;
+        this.dateEmbauche = eDateEmbauche;
+        this.salaire = eSalaire;
+    }
+
+    /**
+     * Méthode pour calculer le nombre d'année d'ancienneté d'un employé
+     * @return la différence entre l'année courante et l'année d'embauche
+     */
+    public final Integer getNombreAnneeAnciennete(){
+        return LocalDate.now().getYear() - dateEmbauche.getYear();
+    }
+
+
+
 }
