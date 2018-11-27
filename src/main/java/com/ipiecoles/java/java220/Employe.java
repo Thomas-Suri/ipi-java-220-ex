@@ -1,11 +1,13 @@
 package com.ipiecoles.java.java220;
 import java.lang.String;
+import java.util.Objects;
+
 import org.joda.time.LocalDate;
 
 /**
  * Created by pjvilloud on 21/09/17.
  */
-public class Employe {
+public abstract class Employe {
     private String nom;
     private String prenom;
     private String matricule;
@@ -135,9 +137,30 @@ public class Employe {
         return Entreprise.NB_CONGES_BASE;
     }
 
+    public abstract Double getPrimeAnnuelle();
+
+    /**
+     * Méthode augmentant le salaire à l'aide d'un pourcentage passé en paramètre
+     * @param pourcentage
+     */
+    public void augmenterSalaire(Double pourcentage){
+        this.salaire = this.getSalaire() * (1 + pourcentage);
+    }
+
     @Override
     public String toString() {
+        return "Employe{"+"nom='"+nom+"', prenom='"+prenom+"', matricule='"+matricule+"', dateEmbauche="+dateEmbauche+", salaire="+salaire+"}";
+    }
 
-        return super.toString();
+    @Override
+    public boolean equals(Object o){
+        if (this == o ) return true;
+        if (!(o instanceof Employe)) return false;
+        Employe employe = (Employe) o;
+        return hashCode() == o.hashCode();
+    }
+
+    public int hashCode(){
+        return Objects.hash(nom, prenom, matricule, dateEmbauche, salaire);
     }
 }
