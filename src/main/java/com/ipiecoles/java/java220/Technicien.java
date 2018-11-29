@@ -68,8 +68,6 @@ public class Technicien extends Employe implements Comparable<Technicien> {
         return "Technicien{"+"grade="+grade+"} "+ super.toString();
     }
 
-
-
     @Override
     public int compareTo(Technicien o) {
         return Integer.compare(o.getGrade(), this.grade);
